@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Kurta Set Creator</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="./lib/Mp3LameEncoder.js"></script>
+        <script src="./src/cutter.js"></script>
+        <script src="./src/file-saver.js"></script>
+        <script src="./src/creator.js"></script>
+        <link href="styles/default-styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app">
+        <header>
+            <h1>Anime Opening Kurta</h1>
+        </header>
+        <main>
+            <h2>Drag in starting file</h2>
+            <audio id="testaudio"></audio>
+            <!--<div id="dropbox" @dragenter="onDragenter" @dragover="onDragover" @drop="onDrop">Drag file</div>-->
+            <input type="file" id="startUpload" @change="onStartUpload" accept=".kurtame">
+            <h2>Add new songs</h2>
+            <div>
+                <label for="anime-name">Anime Name</label>
+                <input type="text" id="anime-name" v-model.trim="name">
+                <label for="fileUpload">Audio File</label>
+                <input type="file" id="fileUpload" @change="onUpload" accept="audio/*" multiple>
+                <button id="confirm" @click="confirmClicked">{{status}}</button>
+            </div>
+            <button id="export" @click="exportClicked">Export</button>
+            <h2>Current Set</h2>
+            <p id="count">Count: {{count}}</p>
+            <div id="set">
+                <div class="anime-section" v-for="key in keys">
+                    <h3>{{key}}</h3>
+                    <ul>
+                        <li v-for="link in songs[key]" v-on:mouseover="showRemove" v-on:mouseleave="hideRemove">
+                            <a :href=link.name target="_blank" class="ani-link">{{link.name}}</a>
+                            <button class="removeButton" v-on:click="removeElement">Remove</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        </div>
+    </body>
+</html>
