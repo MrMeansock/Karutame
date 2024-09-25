@@ -1,27 +1,279 @@
-button {
-    width: 100px;
-    height: 50px;
+:root {
+    --main-character-color: #d49463;
+    --secondary-character-color: color-mix(in srgb,var(--main-character-color),#ffffff 25%);
+    --tertiary-character-color: color-mix(in srgb,var(--main-character-color),#ffffff 75%);
+    --main-text-color: #000000;
 }
 
-#player {
-    visibility: hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'AnimeAceReg', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: var(--tertiary-character-color);
+}
+
+header {
+    background-color: var(--tertiary-character-color);
+    padding: 2em;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'AnimeAceReg', sans-serif;
+    color: var(--main-text-color);
+    font-size: 3em;
+}
+
+#imgButton{
+    width: 50px;
+    height: 50px;
+    float: right;
     position: absolute;
 }
 
-#dropbox{
-    width: 300px;
-    height: 300px;
-    border-style: solid;
-    margin-top: 10px;
+#buttonImg{
+    width: 100%;
+    height: 100%;
 }
 
-li:hover{
-    color: #FF0000;
+/*Main*/
+
+
+#mainContent {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
 }
 
-button.removeButton{
-    margin-left: 10px;
-    width: 75px;
-    height: 25px;
-    visibility: hidden;
+#startContent {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#startPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    border-radius: 25px;
+
+    background-color: var(--secondary-character-color);
+}
+
+#startButton {
+    width: 50%;
+    height: 10%;
+    background-color: var(--main-character-color);
+    color: var(--main-text-color);
+    font-size: 2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15%;
+}
+
+#startButton:hover {
+    background-color: #ff8000; /* Slightly lighter shade */
+}
+
+#startButton:active {
+    background-color: #a67c50; /* A bit more grey */
+}
+
+#deckSelectorPanel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50%;
+    background-color: var(--secondary-character-color);
+    padding: 50px;
+    border-radius: 25px;
+
+    display: none;
+}
+
+#tempDeckSelectButton {
+    width: 20%;
+    height: 30%;
+    background-image: url('../images/Decks/TempDeckImg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#gameContent {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+
+    display: none;
+}
+
+#cardSectionContainer {
+    width: 50vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cardSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width : 50%;
+    height: 50%;
+}
+
+#timerContainer {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width : 50%;
+    height: 50%;
+}
+
+#gameTimer
+{
+    font-size: 6em;
+}
+
+#answer{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+#cardImage {
+    width: auto;
+    height: 80%;
+
+    mask-image: url('../images/CardMask2.png');
+    mask-size: cover;
+    mask-repeat: no-repeat;
+
+    outline: 5px solid black;
+}
+
+#roundCounter {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Add this line to center the text vertically */
+    font-size: 2em;
+}
+
+#animeCharacterContainer {
+    width: 50vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#animeCharacter {
+    height: 85%;
+    width: auto;
+}
+
+/*Other*/
+
+#decorBackground{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/Decor2.png');
+    background-blend-mode: overlay;
+    background-color: var(--secondary-character-color);
+
+    mask-image: url('../images/Decor2.png');
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    
+}
+
+#volumeDiv{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+    
+    bottom: 0;
+
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-end; /* Align to the bottom */
+    z-index: 5;
+}
+
+#configurePageButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url('../images/CardConfigureImage.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: transparent;
+    border-color: transparent;
+    width: 100px;
+    height: 100px;
+    margin: 25px; /* Add this line to add 5px margin */
+    z-index: 5;
+}
+
+/* Adds Anime Ace` */
+@font-face {
+    font-family: 'AnimeAceReg';
+    src: url('../fonts/animeace2_reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.isolate {
+    isolation: isolate;
+    position: relative;
 }

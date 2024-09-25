@@ -6,24 +6,56 @@
         <script src="./src/utils.js"></script>
         <script src="./src/audio.js"></script>
         <script src="./src/main.js"></script>
-        <link href="styles/default-styles.css" type="text/css" rel="stylesheet" />
+        <script src="./src/button.js"></script>
+        <script src="./src/game.js"></script>
+        <link href="./styles/default-styles.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
         <header>
-            <h1>Anime Opening Kurta</h1>
+            <h1>Karutame</h1>
         </header>
         <main>
             <audio id="mainAudio"></audio>
-            <div id="player"></div>
-            <p id="answer">???</p>
-            <button id="play">Start</button>
-            <p id="roundCount">Round: 0</p>
-            Volume: <input class="audioSetting" type="range" id="volumeSlider" min="0" max="2" value="1" step="0.01">
-            <span id="volumeLabel">50</span>
-            <p id="songCount">Anime Loaded: 0</p>
-            <h2>Select File</h2>
-            <input type="file" id="fileUpload" accept=".kurtame"><br><br>
-            <a href="set-creator.html">Create Set</a>
+            <div id="mainContent">
+                <button id="configurePageButton"></button>
+                <div id="decorBackground"></div>
+                <div id="volumeDiv">
+                    Volume: <input class="audioSetting" type="range" id="volumeSlider" min="0" max="2" value="1" step="0.01">
+                    <p id="volumeLabel">50</p>
+                </div>
+            </div>
+            <div id="startContent">
+                <div id="startPanel">
+                    <h2>Welcome to Karutame!</h2>
+                    <p>Click the button to start the game!</p>
+                    <button id="startButton">Start</button>
+                </div>
+                <div id="deckSelectorPanel">
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                    <button id="tempDeckSelectButton"></button>
+                </div>
+            </div>
+            <div id="gameContent">
+                <div id="cardSectionContainer">
+                    <div id="cardSection">
+                        <p id="answer">Anime Name</p>
+                        <img id="cardImage" src="images/Cards/bunny-girl-senpai.jpg" alt="CardImage">
+                        <p id="roundCounter">0/50</p>
+                    </div>
+                    <div id="timerContainer">
+                        <p id="gameTimer">3</p>
+                    </div>
+                </div>
+                <div id="animeCharacterContainer">
+                    <img id="animeCharacter" src="images/characters/KarutameGirl1.png" alt="Anime Character">
+                </div>
+            </div>
         </main>
     </body>
 </html>

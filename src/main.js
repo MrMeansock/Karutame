@@ -17,10 +17,43 @@ window.onload = _ => {
     songCount = document.querySelector("#songCount");
     roundCount = document.querySelector("#roundCount");
     mainAudio = document.querySelector("#mainAudio");
-    mainButton.onclick = e =>{
-        if(mainButtonState=="off")
+    /*mainButton.onclick = e =>{}*/
+    
+    document.addEventListener("keydown", function(event) {
+        if (event.code === "Space") 
         {
-            round++;
+            if(mainButtonState=="off"){StartNextRound()}
+            else if(mainButtonState=="on"){RevealRound()}
+            else if(mainButtonState=="start"){StartGame()}
+        }
+    });
+
+    /*document.querySelector("#fileUpload").onchange = onDrop;*/
+
+    volumeLabel = document.querySelector("#volumeLabel");
+    document.querySelector("#volumeSlider").oninput = e => {
+        setVolume(e.target.value);
+        volumeLabel.innerHTML = Math.round((e.target.value / 2 * 100));
+    }
+    //setupAudio();
+}
+
+function StartGame()
+{
+    if(keys.length > 0)
+        {
+            //Set up begining stuff
+            maxRounds = keys.length;
+            animeLeft = [];
+            for(let i = 0; i < keys.length; i++)
+            {
+                animeLeft.push(keys[i]);
+            }
+            round = 1;
+
+            if(!audioLoaded())
+                setupAudio();
+
             roundCount.innerHTML = "Round: " + round;
             mainButtonState = "null";
             answer.innerHTML = "Starting...";
@@ -31,63 +64,36 @@ window.onload = _ => {
             setTimeout(()=>mainButton.innerHTML = "1", 4000);
             setTimeout(nextSong, 5000);
         }
-        else if(mainButtonState =="on")
-        {
-            //player.stopVideo();
-            mainAudio.pause();
-            mainButton.innerHTML = "Play Next";
-            mainButtonState = "off";
-            answer.innerHTML = key;
-            if(round >= maxRounds)
-            {
-                mainButton.innerHTML = "Play again?";
-                roundCount.innerHTML = "Game Over!";
-                mainButtonState = "start";
-            }
-        }
-        else if(mainButtonState == "start")
-        {
-            if(keys.length > 0)
-            {
-                //Set up begining stuff
-                maxRounds = keys.length;
-                animeLeft = [];
-                for(let i = 0; i < keys.length; i++)
-                {
-                    animeLeft.push(keys[i]);
-                }
-                round = 1;
-
-                if(!audioLoaded())
-                    setupAudio();
-
-                roundCount.innerHTML = "Round: " + round;
-                mainButtonState = "null";
-                answer.innerHTML = "Starting...";
-                mainButton.innerHTML = "5";
-                setTimeout(()=>mainButton.innerHTML = "4", 1000);
-                setTimeout(()=>mainButton.innerHTML = "3", 2000);
-                setTimeout(()=>mainButton.innerHTML = "2", 3000);
-                setTimeout(()=>mainButton.innerHTML = "1", 4000);
-                setTimeout(nextSong, 5000);
-            }
-        }
-    }
-
-    /*dropbox = document.querySelector("#dropbox");
-    dropbox.ondragenter = onDragenter;
-    dropbox.ondragover = onDragover;
-    dropbox.ondrop = onDrop;*/
-
-    document.querySelector("#fileUpload").onchange = onDrop;
-
-    volumeLabel = document.querySelector("#volumeLabel");
-    document.querySelector("#volumeSlider").oninput = e => {
-        setVolume(e.target.value);
-        volumeLabel.innerHTML = Math.round((e.target.value / 2 * 100));
-    }
-    //setupAudio();
 }
+
+function StartNextRound()
+{
+    round++;
+    roundCount.innerHTML = "Round: " + round;
+    mainButtonState = "null";
+    answer.innerHTML = "Starting...";
+    mainButton.innerHTML = "5";
+    setTimeout(()=>mainButton.innerHTML = "4", 1000);
+    setTimeout(()=>mainButton.innerHTML = "3", 2000);
+    setTimeout(()=>mainButton.innerHTML = "2", 3000);
+    setTimeout(()=>mainButton.innerHTML = "1", 4000);
+    setTimeout(nextSong, 5000);
+}
+
+function RevealRound()
+{
+    mainAudio.pause();
+    mainButton.innerHTML = "Play Next";
+    mainButtonState = "off";
+    answer.innerHTML = key;
+    if(round >= maxRounds)
+    {
+        mainButton.innerHTML = "Play again?";
+        roundCount.innerHTML = "Game Over!";
+        mainButtonState = "start";
+    }
+}
+
 
 function nextSong()
 {
@@ -96,7 +102,6 @@ function nextSong()
     let song = songs[key][getRandomInt(0, songs[key].length)];
     animeLeft.splice(animeNum, 1);
 
-    //player.loadVideoById(song);
     mainAudio.src = song.file;
     mainAudio.play();
     mainButton.innerHTML = "Reveal";
@@ -104,7 +109,8 @@ function nextSong()
     answer.innerHTML = "???";
 }
   
-  function onDrop(e){
+  function onDrop(e)
+  {
     let file = e.target.files[0];
     if(file){
       let reader = new FileReader();
@@ -114,7 +120,8 @@ function nextSong()
     }
   }
 
-  function dataLoaded(e){
+  function dataLoaded(e)
+  {
     //let s = e.target.result;
     //let view = new Uint8Array(s);
     let cs = e.target.result;
