@@ -137,7 +137,7 @@ h1 {
     flex-direction: row;
     height: 100vh;
     width: 100vw;
-    top: 0;
+    top: 2.5vh; /* Adjusted to account for header height maybe take this out*/
     left: 0;
 
     display: none;
@@ -156,8 +156,8 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width : 50%;
-    height: 50%;
+    width : 60%;
+    height: 60%;
 }
 
 #timerContainer {
@@ -192,6 +192,11 @@ h1 {
     mask-repeat: no-repeat;
 
     outline: 5px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 #roundCounter {
@@ -212,8 +217,9 @@ h1 {
 }
 
 #animeCharacter {
-    height: 85%;
+    height: 100%;
     width: auto;
+    position: absolute;
 }
 
 /*Other*/

@@ -11,8 +11,6 @@ function setupGame()
 
     const deckSelectorPanel = document.getElementById("deckSelectorPanel");
     if (deckSelectorPanel) { deckSelectorPanel.style.display = "flex";}
-
-    startGame();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -41,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function deckPicked() 
+// import { startGame } from './game.js';
+async function deckPicked() 
 {
     console.log("Deck Picked");
 
@@ -53,6 +52,8 @@ function deckPicked()
 
     const gameContent = document.getElementById("gameContent");
     if (gameContent) { gameContent.style.display = "flex";}
+
+    startGame();
 }
 
 /* Configure stuff --------------------------------------------------------- */
