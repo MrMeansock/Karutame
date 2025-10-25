@@ -1,3 +1,4 @@
+import random
 import sqlite3
 
 DB_PATH = "files\\Kuratame.db"
@@ -20,14 +21,19 @@ def query(query:str, args = None):
     cursor.close()
     return result
 
-def getAllSongs():
-    return query("""SELECT * FROM Songs""") 
-
-def getSongs(anime):
-    return query("""SELECT * FROM Songs WHERE Card = ?""", (anime,))
-
-def getAllCards():
-    return query("""SELECT * FROM Cards""")     
-
-def getCards(anime):
-    return query("""SELECT * FROM Cards WHERE Card = ?""", (anime,))
+def filterSelect(table, args, amount):
+    sql = ["SELECT * FROM {}".format(table)]
+    params = []
+    if(len(args) > 0):
+        sql[0] += " WHERE "
+        for key in args:
+            sql.append("{} = ?".format(key))
+            params.append(args[key])
+    
+    request = sql[0] + ' AND '.join(sql[1:])
+    result = query(request, params)
+    if not amount:
+      return result
+    if amount >= len(result):
+      amount = len(result) - 1
+    return random.sample(result, amount)

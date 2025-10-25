@@ -14,57 +14,23 @@ app.debug = True
 def apiInfo():
   return '''API options'''
 
-@app.route("/api/songs",defaults={'anime':None})
-@app.route("/api/songs/<anime>")
+@app.route("/api/songs",defaults={'amount':None})
+@app.route('/api/songs/random',defaults={'amount':1})
+@app.route("/api/songs/random/<int:amount>")
 @cross_origin()
-def songs(anime):
+def getSongs(amount:int):
   if request.method == "GET":
-    if anime:
-      return db.getSongs(anime)
-    return db.getAllSongs()
+    return db.filterSelect("Songs", request.args, amount)
   return """Invalid"""
 
-@app.route('/api/songs/random',defaults={'amount':1,'anime':None})
-@app.route("/api/songs/random/<int:amount>",defaults={'anime':None})
-@app.route("/api/songs/<anime>/random",defaults={'amount':1})
-@app.route("/api/songs/<anime>/random/<int:amount>")
+@app.route("/api/cards",defaults={'amount':None})
+@app.route('/api/cards/random',defaults={'amount':1})
+@app.route("/api/cards/random/<int:amount>")
 @cross_origin()
-def randomSongs(anime, amount:int):
+def randomCards(amount:int):
   if request.method == "GET":
-    if anime:
-      songs = db.getSongs(anime)
-    else:
-      songs = db.getAllSongs()
-    if amount >= len(songs):
-      amount = len(songs) - 1
-    return random.sample(songs, amount)
-  return """Invalid"""
-
-@app.route("/api/cards",defaults={'anime':None})
-@app.route("/api/cards/<anime>")
-@cross_origin()
-def cards(anime):
-  if request.method == "GET":
-    if anime:
-      return db.getCards(anime)
-    return db.getAllCards()
-  return """Invalid"""
-
-@app.route('/api/cards/random',defaults={'amount':1,'anime':None})
-@app.route("/api/cards/random/<int:amount>",defaults={'anime':None})
-@app.route("/api/cards/<anime>/random",defaults={'amount':1})
-@app.route("/api/cards/<anime>/random/<int:amount>")
-@cross_origin()
-def randomCards(anime, amount:int):
-  if request.method == "GET":
-    if anime:
-      cards = db.getCards(anime)
-    else:
-      cards = db.getAllCards()
-    if amount >= len(cards):
-      amount = len(cards) - 1
-    return random.sample(cards, amount)
+    return db.filterSelect("Cards", request.args, amount)
   return """Invalid"""
 
 if __name__ == '__main__':
-    app.run()
+  app.run()
