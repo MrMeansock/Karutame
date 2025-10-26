@@ -14,23 +14,27 @@ app.debug = True
 def apiInfo():
   return '''API options'''
 
-@app.route("/api/songs",defaults={'amount':None})
+@app.route("/api/songs",defaults={'amount':None}, methods=['GET', 'POST'])
 @app.route('/api/songs/random',defaults={'amount':1})
 @app.route("/api/songs/random/<int:amount>")
 @cross_origin()
-def getSongs(amount:int):
+def songs(amount:int):
   if request.method == "GET":
     return db.filterSelect("Songs", request.args, amount)
-  return """Invalid"""
+  if request.method == "POST":
+    return db.createItem("Songs", request.args)
+  return """Invalid request"""
 
-@app.route("/api/cards",defaults={'amount':None})
+@app.route("/api/cards",defaults={'amount':None}, methods=['GET', 'POST'])
 @app.route('/api/cards/random',defaults={'amount':1})
 @app.route("/api/cards/random/<int:amount>")
 @cross_origin()
-def randomCards(amount:int):
+def cards(amount:int):
   if request.method == "GET":
     return db.filterSelect("Cards", request.args, amount)
-  return """Invalid"""
+  if request.method == "POST":
+    return db.createItem("Cards", request.args)
+  return """Invalid request"""
 
 if __name__ == '__main__':
   app.run()
