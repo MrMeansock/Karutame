@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function openConfigurePage() 
 {
     console.log("Opening configure page...");
-    window.location.href = "configure.html";
+    window.location.href = "HTML/configure.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -65,5 +65,5 @@ document.addEventListener("DOMContentLoaded", () => {
 function returnToMainPage() 
 {
     console.log("Returning to main page...");
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
 }

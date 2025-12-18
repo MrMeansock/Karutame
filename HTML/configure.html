@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../src/button.js"></script>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../styles/configure-styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karutame Configuration</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main class="rowFlex">
+        <article id="deckSelector" class="columnFlex">
+            <div id="deckControls" class="columnFlex">
+                <div id="deckHeader" class="rowFlex">
+                    <span>Decks</span>
+                    <button id="createNewDeck">+</button>
+                </div>
+                <div id="deckSorting" class="rowFlex">
+                    <div id="searchBar">
+                        <input type="text" placeholder="Search..">
+                    </div>
+                    <div id="sorting">
+                        <button>Alphabetical</button>
+                    </div>
+                </div>
+            </div>
+            <div id="deckList">
+                <div id="fakeDeck" class="listedDeck">
+                    <div class="deckImage">
+                        <img src="../images/Decks/TempDeckImg.png" alt="">
+                    </div>
+                    <div class="deckDetails">
+                        <span>Deck Name</span>
+                        <span>XX Songs</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article id="mainView" class="columnFlex">
+            <div id="deckDisplay" class="rowFlex">
+                <div id="selectedImage">
+                    <img src="../images/Decks/TempDeckImg.png" alt="Deck">
+                </div>
+                <div id="selectedDetails" class="columnFlex">
+                    <div id="selectedTitle">
+                        <h1>PLACEHOLDER TITLE</h1>
+                    </div>
+                    <div id="selectedControls" class="rowFlex">
+                        <button>Play</button>
+                        <button>+</button>
+                        <button>...</button>
+                    </div>
+                </div>
+            </div>
+            <table id="songList">
+                <tr>
+                    <th>#</th>
+                    <th>Song</th>
+                    <th>Card</th>
+                </tr>
+                <tr class="song">
+                    <td>1</td>
+                    <td>Jingo Jungle</td>
+                    <td>Saga of Tanya the Evil</td>
+                </tr>
+            </table>
+        </article>
+    </main>
+    <footer>
+        <button id="returnButton">Return</button>
+    </footer>
+</body>
+
+</html>
