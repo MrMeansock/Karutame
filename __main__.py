@@ -20,9 +20,9 @@ def apiInfo():
 @cross_origin()
 def songs(amount:int):
   if request.method == "GET":
-    return db.filterSelect("Songs", request.args, amount)
+    return db.filterSelect(db.DB_TABLES['songs'], request.args, amount)
   if request.method == "POST":
-    return db.createItem("Songs", request.args)
+    return db.createItem(db.DB_TABLES['songs'], request.args)
   return """Invalid request"""
 
 @app.route("/api/cards",defaults={'amount':None}, methods=['GET', 'POST'])
@@ -31,9 +31,27 @@ def songs(amount:int):
 @cross_origin()
 def cards(amount:int):
   if request.method == "GET":
-    return db.filterSelect("Cards", request.args, amount)
+    return db.filterSelect(db.DB_TABLES['cards'], request.args, amount)
   if request.method == "POST":
-    return db.createItem("Cards", request.args)
+    return db.createItem(db.DB_TABLES['cards'], request.args)
+  return """Invalid request"""
+
+@app.route("/api/decks",defaults={'amount':None}, methods=['GET', 'POST'])
+@cross_origin()
+def decks(amount:int):
+  if request.method == "GET":
+    return db.filterSelect(db.DB_TABLES['decks'], request.args, amount)
+  if request.method == "POST":
+    return db.createItem(db.DB_TABLES['decks'], request.args)
+  return """Invalid request"""
+
+@app.route("/api/decks/<name>", methods=['GET', 'POST'])
+@cross_origin()
+def deckCardSongs(name:str):
+  if request.method == "GET":
+    return db.deckDetails(name=name)
+  if request.method == "POST":
+    return """Invalid request"""
   return """Invalid request"""
 
 if __name__ == '__main__':
