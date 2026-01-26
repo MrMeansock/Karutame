@@ -3,6 +3,9 @@
 
 <head>
     <script src="../src/button.js"></script>
+    <script src="../src/api.js"></script>
+    <script src="../src/configure/createDBEntries.js"></script>
+    <script src="../src/configure/loadDBEntries.js"></script>
 
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../styles/configure-styles.css">
@@ -31,7 +34,7 @@
                 </div>
             </div>
             <div id="deckList">
-                <div id="fakeDeck" class="listedDeck">
+                <!-- <div id="fakeDeck" class="listedDeck">
                     <div class="deckImage">
                         <img src="../images/Decks/TempDeckImg.png" alt="">
                     </div>
@@ -39,7 +42,7 @@
                         <span>Deck Name</span>
                         <span>XX Songs</span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </article>
         <article id="mainView" class="columnFlex">
@@ -49,7 +52,7 @@
                 </div>
                 <div id="selectedDetails" class="columnFlex">
                     <div id="selectedTitle">
-                        <h1>PLACEHOLDER TITLE</h1>
+                        <h1 id="selectedHeader">PLACEHOLDER TITLE</h1>
                     </div>
                     <div id="selectedControls" class="rowFlex">
                         <button>Play</button>
@@ -64,11 +67,11 @@
                     <th>Song</th>
                     <th>Card</th>
                 </tr>
-                <tr class="song">
+                <!-- <tr class="song">
                     <td>1</td>
                     <td>Jingo Jungle</td>
                     <td>Saga of Tanya the Evil</td>
-                </tr>
+                </tr> -->
             </table>
         </article>
     </main>
