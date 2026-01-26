@@ -58,10 +58,8 @@ def getItem(table, uuid):
     sql = "SELECT * FROM {} WHERE uuid = ?".format(table)
     return select(sql, [uuid])
 
-
-def deckDetails(name):
+def deckDetails(deckID):
     result=[]
-    deckID = getID(DB_TABLES['decks'], name)
     sql = "SELECT card_song_id FROM {} WHERE deck_id = ?".format(DB_TABLES['deckDetails'])
     cardsInDeck = select(sql, [deckID])
 

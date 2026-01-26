@@ -45,11 +45,11 @@ def decks(amount:int):
     return db.createItem(db.DB_TABLES['decks'], request.args)
   return """Invalid request"""
 
-@app.route("/api/decks/<name>", methods=['GET', 'POST'])
+@app.route("/api/decks/<id>", methods=['GET', 'POST'])
 @cross_origin()
-def deckCardSongs(name:str):
+def deckCardSongs(id:str):
   if request.method == "GET":
-    return db.deckDetails(name=name)
+    return db.deckDetails(id)
   if request.method == "POST":
     return """Invalid request"""
   return """Invalid request"""
